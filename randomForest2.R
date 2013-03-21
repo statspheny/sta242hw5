@@ -38,15 +38,15 @@ doRandomForest = function(x) {
   return(tmp.rf)
 }
 
-save.image("randomforesthalf-new.rda")
+save.image("randomforesthalf.rda")
 
 print("do parallel...")
 library(parallel)
 cl = makeCluster(4,type="FORK")
-clusterSetRNGStream(cl,iseed=1234)
+clusterSetRNGStream(cl,iseed=5678)
 
 
-for (i in 1:10) {
+for (i in 5:10) {
   allrf = clusterApplyLB(cl,1:10,doRandomForest)
   save.image(paste("randomForestResults",i,".rda",sep=""))
 }
